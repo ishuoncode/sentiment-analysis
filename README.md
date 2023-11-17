@@ -40,4 +40,7 @@ Feel free to customize and enhance the application based on your needs!
 ## References
 
 1. For ML learning: https://www.youtube.com/watch?v=-YCDhHVNNLA&t=4s
+
+**make sure you replace the email and password** If you are unable then check the video. 
+
 2. For generating your app password and email: https://www.youtube.com/watch?v=6ANKk9NQ3GI
