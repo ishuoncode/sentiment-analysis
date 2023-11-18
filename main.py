@@ -16,8 +16,8 @@ st.header('Sentiment Analysis')
 receiver_email = st.text_input('Enter receiver\'s email:')
 
 # Function to send email with attachment
-sender_email = "REPLACE IT WITH YOUR EMAIL" # Replace it!! 
-password = "REPLACE IT WITH YOUR PASSWORD"  # Replace it!!
+sender_email = "ishusingh40064@gmail.com"
+password = "ywohtiurfbbehqjk"
 def send_email(subject, body, attachment_path):
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
@@ -41,8 +41,14 @@ def send_email(subject, body, attachment_path):
             part.add_header("Content-Disposition", f"attachment; filename= {attachment_path}")
             message.attach(part)
 
+        st.text("Sending result to email...")
+        progress_bar.progress(20)
+        
         # Send email
         smtp.sendmail(sender_email, receiver_email, message.as_string())
+        progress_bar.progress(100)
+
+        st.text("Email sent successfully!")
 
 # Analyze Text
 with st.expander('Analyze Text'):
@@ -95,10 +101,6 @@ with st.expander('Analyze CSV'):
         sentiment_file_path = 'sentiment.csv'
         df.to_csv(sentiment_file_path, index=False)
 
-        # Send email with overall sentiment label and sentiment file attachment
-        if receiver_email:
-            send_email("Sentiment Analysis Result", f"The overall sentiment is: {overall_sentiment_label}", sentiment_file_path)
-
         @st.cache
         def convert_df(df):
             return df.to_csv().encode('utf-8')
@@ -111,3 +113,9 @@ with st.expander('Analyze CSV'):
             file_name='sentiment.csv',
             mime='text/csv',
         )
+
+        # Send email with sentiment label and sentiment file attachment
+        if receiver_email:
+            progress_bar = st.progress(0)
+            send_email("Sentiment Analysis Result", f"The overall sentiment is: {overall_sentiment_label}", sentiment_file_path)
+
