@@ -16,8 +16,8 @@ st.header('Sentiment Analysis')
 receiver_email = st.text_input('Enter receiver\'s email:')
 
 # Function to send email with attachment
-sender_email = "ishusingh40064@gmail.com"
-password = "ywohtiurfbbehqjk"
+sender_email = "REPLACE IT WITH YOUR EMAIL" # Replace it!! 
+password = "REPLACE IT WITH YOUR PASSWORD"  # Replace it!!
 def send_email(subject, body, attachment_path):
     with smtplib.SMTP('smtp.gmail.com', 587) as smtp:
         smtp.ehlo()
